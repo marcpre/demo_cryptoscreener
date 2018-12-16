@@ -16,6 +16,7 @@ class CreateCoinBasisTable extends Migration
         Schema::create('coin_basis', function (Blueprint $table) {
             $table->increments('id');
             $table->string('symbol');
+            $table->string('image');
             $table->string('name');
             $table->bigInteger('supply');
             $table->string('algorithm');
