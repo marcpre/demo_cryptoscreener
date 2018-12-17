@@ -1,10 +1,17 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
+<<<<<<< HEAD
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
     "content-hash": "1447276e1fa1595ce3c3f325805969b0",
+=======
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "66ca7343889332c2b8ecca11c251430c",
+>>>>>>> 36d3780e337bef3faeae645866e6a2343e0de05c
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -313,6 +320,7 @@
             "time": "2018-03-08T01:11:30+00:00"
         },
         {
+<<<<<<< HEAD
             "name": "fabpot/goutte",
             "version": "v3.2.3",
             "source": {
@@ -368,6 +376,8 @@
             "time": "2018-06-29T15:13:57+00:00"
         },
         {
+=======
+>>>>>>> 36d3780e337bef3faeae645866e6a2343e0de05c
             "name": "fideloper/proxy",
             "version": "4.0.0",
             "source": {
@@ -1063,7 +1073,11 @@
                 {
                     "name": "Luís Otávio Cobucci Oblonczyk",
                     "email": "lcobucci@gmail.com",
+<<<<<<< HEAD
                     "role": "developer"
+=======
+                    "role": "Developer"
+>>>>>>> 36d3780e337bef3faeae645866e6a2343e0de05c
                 }
             ],
             "description": "A simple library to work with JSON Web Token and JSON Web Signature",
@@ -2114,6 +2128,7 @@
             "time": "2018-09-11T07:12:52+00:00"
         },
         {
+<<<<<<< HEAD
             "name": "symfony/browser-kit",
             "version": "v4.2.1",
             "source": {
@@ -2171,6 +2186,8 @@
             "time": "2018-11-26T11:49:31+00:00"
         },
         {
+=======
+>>>>>>> 36d3780e337bef3faeae645866e6a2343e0de05c
             "name": "symfony/console",
             "version": "v4.2.1",
             "source": {
@@ -2417,6 +2434,7 @@
             "time": "2018-11-28T18:24:18+00:00"
         },
         {
+<<<<<<< HEAD
             "name": "symfony/dom-crawler",
             "version": "v4.2.1",
             "source": {
@@ -2474,6 +2492,8 @@
             "time": "2018-11-26T10:55:26+00:00"
         },
         {
+=======
+>>>>>>> 36d3780e337bef3faeae645866e6a2343e0de05c
             "name": "symfony/event-dispatcher",
             "version": "v4.2.1",
             "source": {

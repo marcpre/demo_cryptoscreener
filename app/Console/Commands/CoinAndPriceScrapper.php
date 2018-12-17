@@ -2,7 +2,10 @@
 
 namespace App\Console\Commands;
 
+<<<<<<< HEAD
 use Goutte\Client;
+=======
+>>>>>>> 36d3780e337bef3faeae645866e6a2343e0de05c
 use Illuminate\Console\Command;
 
 class CoinAndPriceScrapper extends Command
@@ -38,6 +41,7 @@ class CoinAndPriceScrapper extends Command
      */
     public function handle()
     {
+<<<<<<< HEAD
        $startUrl = "https://coinlib.io/coins";
 
        //arrays
@@ -86,5 +90,8 @@ class CoinAndPriceScrapper extends Command
             }
        }
         
+=======
+        //
+>>>>>>> 36d3780e337bef3faeae645866e6a2343e0de05c
     }
 }
