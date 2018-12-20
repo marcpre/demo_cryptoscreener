@@ -2,10 +2,7 @@
 
 namespace App\Console\Commands;
 
-<<<<<<< HEAD
 use Goutte\Client;
-=======
->>>>>>> 36d3780e337bef3faeae645866e6a2343e0de05c
 use Illuminate\Console\Command;
 
 class CoinAndPriceScrapper extends Command
@@ -41,16 +38,20 @@ class CoinAndPriceScrapper extends Command
      */
     public function handle()
     {
-<<<<<<< HEAD
        $startUrl = "https://coinlib.io/coins";
 
        //arrays
        $coinArr = array();
        $urlArr = array();
+       $symbolArr = array();
+
+        $resArr = array();
+        $multi = array();
 
        //xpath
        $coinName = 'td.clickable-coin-td > div.tbl-currency > a';
        $url = 'td.clickable-coin-td > div.tbl-currency > a';
+        $symbol = 'td.clickable-coin-td > div.tbl-currency > span';
 
        $client = new Client();
        //Change $i to 108
@@ -67,6 +68,10 @@ class CoinAndPriceScrapper extends Command
                 array_push($coinArr, $node->text());
             });
             
+            $crawler->filter($symbol)->each(function ($node) use (&$symbolArr) {
+                array_push($symbolArr, $node->text());
+            });
+            
             $crawler->filter($url)->each(function ($node) use (&$urlArr) {
                 $link = $node->link();
                 $uri = $link->getUri();
@@ -80,18 +85,24 @@ class CoinAndPriceScrapper extends Command
             //for ($key=0; $key < 2; $key++) { 
                 
                 $subCrawler = $client->request('GET', $urlArr[$key]);
-                $image = $subCrawler->filter("img.sub-coin-icon")->extract(array('src')); //->each(function ($node) use (&$imgArr) {
+                
+                // image
+                $image = $subCrawler->filter("img.sub-coin-icon")->extract(array('src'));
                 print_r($image[0] . "\n");  
                 //$link = $image[0]->link();
                 $uri = $image[0];
                 $this->info($uri);
+                
+                // algorithm
+                $algorithm = $subCrawler->filter("img.sub-coin-icon")->extract();
+                $this->info($algorithm);
+
+                $multi[] = [$coinArr[$key], $uri, $urlArr[$key], $symbolArr[$key], $algorithm];
+                
+                
                 //array_push($imgArr, $uri);
                 //});
             }
        }
-        
-=======
-        //
->>>>>>> 36d3780e337bef3faeae645866e6a2343e0de05c
     }
 }
