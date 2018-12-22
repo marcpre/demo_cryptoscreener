@@ -14,14 +14,18 @@ class CreateCoinBasisTable extends Migration
     public function up()
     {
         Schema::create('coin_basis', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('Id');
             $table->string('symbol');
-            $table->string('image');
-            $table->string('name');
-            $table->bigInteger('supply');
-            $table->string('algorithm');
-            $table->integer('ico_year')->unsigned();
-            $table->boolean('pays_dividends');
+            $table->string('image_url')->nullable();
+            $table->string('coin_name')->nullable();
+            $table->string('full_name')->nullable();
+            $table->string('proof_type')->nullable();
+            $table->bigInteger('total_supply')->nullable();
+            $table->string('algorithm')->nullable();
+            $table->integer('ico_year')->unsigned()->nullable();
+            $table->boolean('pays_dividends')->nullable();
+            $table->boolean('fully_premined')->nullable();
+            $table->string('smart_contract_address')->nullable();
             $table->timestamps();
         });
     }
