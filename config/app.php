@@ -166,6 +166,8 @@ return [
          * Package Service Providers...
          */
 
+        Reliese\Coders\CodersServiceProvider::class, // create models based on db table
+
         /*
          * Application Service Providers...
          */
