@@ -15,12 +15,34 @@ class CreateTickDataTable extends Migration
     {
         Schema::create('tick_data', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('coin_basis_id');
+            $table->unsignedInteger('coin_basis_id')->nullable();
             $table->foreign('coin_basis_id')->references('id')->on('coin_basis');
-            $table->unsignedInteger('exchanges_id');
+            $table->unsignedInteger('exchanges_id')->nullable();
             $table->foreign('exchanges_id')->references('id')->on('exchanges');
-            $table->decimal('price', 40, 30);
-            $table->decimal('market_cap', 30, 10);
+            $table->string('pair')->nullable();
+
+            // fields as cctx api
+            $table->decimal('high_price', 50, 30)->nullable();
+            $table->decimal('low_price', 50, 30)->nullable();
+            $table->decimal('bid_price', 50, 30)->nullable();
+            $table->decimal('bid_qty', 50, 30)->nullable();
+            $table->decimal('ask_price', 50, 30)->nullable();
+            $table->decimal('ask_qty', 50, 30)->nullable();
+            $table->decimal('vwap', 50, 30)->nullable();
+            $table->decimal('open_price', 50, 30)->nullable();
+            $table->decimal('close_price', 50, 30)->nullable();
+            $table->decimal('last_price', 50, 30)->nullable();
+            $table->decimal('last_qty', 50, 30)->nullable();
+            $table->decimal('previous_close', 50, 30)->nullable();
+            $table->decimal('price_change', 50, 30)->nullable();
+            $table->decimal('price_change_percentage', 50, 30)->nullable();
+            $table->decimal('average', 50, 30)->nullable();
+            $table->decimal('base_volume', 50, 20)->nullable();
+            $table->decimal('quote_volume', 50, 30)->nullable();
+
+            $table->date('open_time')->nullable();
+            $table->date('close_time')->nullable();
+            $table->date('exchange_timestamp');
             $table->timestamps();
         });
     }

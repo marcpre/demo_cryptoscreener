@@ -21,6 +21,7 @@ class CreateCoinBasisTable extends Migration
             $table->string('full_name')->nullable();
             $table->string('proof_type')->nullable();
             $table->bigInteger('total_supply')->nullable();
+            $table->decimal('market_cap', 30, 10)->nullable();
             $table->string('algorithm')->nullable();
             $table->integer('ico_year')->unsigned()->nullable();
             $table->boolean('pays_dividends')->nullable();
