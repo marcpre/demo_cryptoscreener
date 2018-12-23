@@ -26,6 +26,14 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')
         //          ->hourly();
+
+        /**
+         * Scrap from cryptocompare.com the basic coins
+         * API can be found here: https://min-api.cryptocompare.com/documentation?key=Other&cat=allCoinsWithContentEndpoint&api_key=fb5f641098a644087d1eeaa86eefc47e1ea472b7e5a88b61fd38fff876c354ee
+         */
+        $schedule->command('basis:cc')->hourly();
+
+
     }
 
     /**
