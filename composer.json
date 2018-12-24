@@ -12,6 +12,7 @@
         "ccxt/ccxt": "^1.18",
         "fabpot/goutte": "^3.2",
         "fideloper/proxy": "^4.0",
+        "keboola/csv": "^2.0",
         "laravel/framework": "5.7.*",
         "laravel/tinker": "^1.0",
         "reliese/laravel": "^0.0.13"
