@@ -1,98 +1,59 @@
-<!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://unpkg.com/ag-grid-enterprise/dist/ag-grid-enterprise.min.noStyle.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/dist/styles/ag-grid.css">
+    <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/dist/styles/ag-theme-balham.css">
+</head>
+<body>
+<h1>Hello from ag-grid!</h1>
+<button onclick="getSelectedRows()">Get Selected Rows</button>
+<div id="myGrid" style="height: 600px;width:500px;" class="ag-theme-balham"></div>
 
-        <title>Laravel</title>
+<script type="text/javascript" charset="utf-8">
+    // specify the columns
+    var columnDefs = [
+        {headerName: "Make", field: "make", rowGroupIndex: 0 },
+        {headerName: "Price", field: "price"}
+    ];
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
+    var autoGroupColumnDef = {
+        headerName: "Model",
+        field: "model",
+        cellRenderer:'agGroupCellRenderer',
+        cellRendererParams: {
+            checkbox: true
+        }
+    }
 
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
-            }
+    // let the grid know which columns and what data to use
+    var gridOptions = {
+        columnDefs: columnDefs,
+        enableSorting: true,
+        enableFilter: true,
+        autoGroupColumnDef: autoGroupColumnDef,
+        groupSelectsChildren: true,
+        rowSelection: 'multiple'
+    };
 
-            .full-height {
-                height: 100vh;
-            }
+    // lookup the container we want the Grid to use
+    var eGridDiv = document.querySelector('#myGrid');
 
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
+    // create the grid passing in the div to use together with the columns & data we want to use
+    new agGrid.Grid(eGridDiv, gridOptions);
 
-            .position-ref {
-                position: relative;
-            }
+    fetch('https://api.myjson.com/bins/ly7d1').then(function(response) {
+        return response.json();
+    }).then(function(data) {
+        gridOptions.api.setRowData(data);
+    })
 
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 13px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
-
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
-            </div>
-        </div>
-    </body>
+    function getSelectedRows() {
+        const selectedNodes = gridOptions.api.getSelectedNodes()
+        const selectedData = selectedNodes.map( function(node) { return node.data })
+        const selectedDataStringPresentation = selectedData.map( function(node) { return node.make + ' ' + node.model }).join(', ')
+        alert('Selected nodes: ' + selectedDataStringPresentation);
+    }
+</script>
+</body>
 </html>
