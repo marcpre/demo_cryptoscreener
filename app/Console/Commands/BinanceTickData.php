@@ -8,9 +8,7 @@ use App\Models\Exchange;
 use ccxt\NetworkError;
 use ccxt\binance;
 use ccxt\ExchangeError;
-use DateTime;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Storage;
 
 class BinanceTickData extends Command
 {
