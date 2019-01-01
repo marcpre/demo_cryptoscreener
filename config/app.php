@@ -167,7 +167,7 @@ return [
          */
 
         Reliese\Coders\CodersServiceProvider::class, // create models based on db table
-
+        Barryvdh\Debugbar\ServiceProvider::class, // debugtoolbar
         /*
          * Application Service Providers...
          */
@@ -225,6 +225,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'Debugbar' => Barryvdh\Debugbar\Facade::class,
 
     ],
 

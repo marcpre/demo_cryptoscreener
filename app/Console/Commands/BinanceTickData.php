@@ -57,9 +57,9 @@ class BinanceTickData extends Command
             $this->info("Ticker: " . json_encode($tick));
 
             /*
-            $content = json_encode($result);
-            $file = '/binance_del_me/';
-            Storage::put($file, $content);
+                $content = json_encode($result);
+                $file = '/binance_del_me/';
+                Storage::put($file, $content);
             */
 
         } catch (NetworkError $e) {

@@ -23,7 +23,10 @@ Route::get('/grid', function () {
     return view('grid');
 });
 
+Route::resource('/datatable', 'DataTableController');
+
+/*
 Route::get('/datatable', function () {
     return view('datatable');
 });
-
+*/
