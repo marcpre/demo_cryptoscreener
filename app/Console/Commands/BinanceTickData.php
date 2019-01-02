@@ -96,6 +96,12 @@ class BinanceTickData extends Command
             $td->quote_volume = $obj['quoteVolume'];
             $td->last_qty = $obj['info']['lastQty'];
 
+            /*
+            if($obj['symbol'] == "BCN/BTC") {
+                $this->info("STOP DEBUG");
+            }
+            */
+
             $td->close_time = $this->convertToDateTimeObj($obj['info']['closeTime']);
             $td->open_time = $this->convertToDateTimeObj($obj['info']['openTime']);
             $td->exchange_timestamp = $this->convertToDateTimeObj($obj['timestamp']);
@@ -109,44 +115,42 @@ class BinanceTickData extends Command
             $c = CoinBasi::where('symbol', $s[0])->first();;
             $td->coin_basi()->associate($c);
 
-            /**
-             * $table->date('open_time')->nullable();
-             * $table->date('close_time')->nullable();
-             */
+            try {
 
-            $td->firstOrCreate(
-                [
-                    'pair' => $td->pair,
-                    'exchange_timestamp' => $td->exchange_timestamp],
-                [
-                    'pair' => $td->pair,
-                    'exchange_timestamp' => $td->exchange_timestamp,
-                    'ask_price' => $td->ask_price,
-                    'ask_qty' => $td->ask_qty,
-                    'bid_price' => $td->bid_price,
-                    'bid_qty' => $td->bid_qty,
-                    'high_price' => $td->high_price,
-                    'last_price' => $td->last_price,
-                    'open_price' => $td->open_price,
-                    'close_price' => $td->close_price,
-                    'low_price' => $td->low_price,
-                    'vwap' => $td->vwap,
-                    'previous_close' => $td->previous_close,
-                    'price_change' => $td->price_change,
-                    'price_change_percentage' => $td->price_change_percentage,
-                    'average' => $td->average,
-                    'base_volume' => $td->base_volume,
-                    'quote_volume' => $td->quote_volume,
-                    'last_qty' => $td->last_qty,
-                    'exchanges_id' => $td->exchanges_id,
-                    'coin_basis_id' => $td->coin_basis_id
-                ]);
+                $td->firstOrCreate(
+                    [
+                        'pair' => $td->pair,
+                        'exchange_timestamp' => $td->exchange_timestamp],
+                    [
+                        'pair' => $td->pair,
+                        'exchange_timestamp' => $td->exchange_timestamp,
+                        'ask_price' => $td->ask_price,
+                        'ask_qty' => $td->ask_qty,
+                        'bid_price' => $td->bid_price,
+                        'bid_qty' => $td->bid_qty,
+                        'high_price' => $td->high_price,
+                        'last_price' => $td->last_price,
+                        'open_price' => $td->open_price,
+                        'close_price' => $td->close_price,
+                        'low_price' => $td->low_price,
+                        'vwap' => $td->vwap,
+                        'previous_close' => $td->previous_close,
+                        'price_change' => $td->price_change,
+                        'price_change_percentage' => $td->price_change_percentage,
+                        'average' => $td->average,
+                        'base_volume' => $td->base_volume,
+                        'quote_volume' => $td->quote_volume,
+                        'last_qty' => $td->last_qty,
+                        'exchanges_id' => $td->exchanges_id,
+                        'coin_basis_id' => $td->coin_basis_id
+                    ]);
             // $cb->updateOrCreate(['symbol' => $cb->symbol], ['algorithm' => $cb->algorithm, 'coin_name' => $cb->coin_name, 'full_name' => $cb->full_name, 'total_supply' => $cb->total_supply, 'image_url' => $cb->image_url, 'fully_premined' => $cb->fully_premined, 'proof_type' => $cb->proof_type, 'smart_contract_address' => $cb->smart_contract_address]);
+            } catch (Exception $e) {
+                $this->error($e);
+            }
             $this->info("Insert pair: " . $td->pair);
         }
-
     }
-
 
     /**
      * Generate DateTimeObj
@@ -154,7 +158,10 @@ class BinanceTickData extends Command
      */
     private function convertToDateTimeObj($t)
     {
-        $dt = (int)($t / 1000);
-        return DateTime::createFromFormat("U", (int)$dt / 1000);
+        date_default_timezone_set('UTC');
+        $result = date ('c', (int) round ($t / 1000));
+        $msec = (int) $t % 1000;
+        $ts = str_replace ('+00:00', sprintf (".%03dZ", $msec), $result);
+        return DateTime::createFromFormat("U.u", strtotime($ts));
     }
 }

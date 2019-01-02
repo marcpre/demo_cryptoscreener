@@ -40,9 +40,11 @@ class CreateTickDataTable extends Migration
             $table->decimal('base_volume', 50, 20)->nullable();
             $table->decimal('quote_volume', 50, 30)->nullable();
 
-            $table->timestamp('open_time')->nullable();
-            $table->timestamp('close_time')->nullable();
-            $table->timestamp('exchange_timestamp')->nullable();
+            // datetime vs timestamp
+            // https://stackoverflow.com/questions/47878287/difference-between-timestamp-and-datetime-methods-of-the-blueprint-class
+            $table->dateTime('open_time')->nullable();
+            $table->dateTime('close_time')->nullable();
+            $table->dateTime('exchange_timestamp')->nullable();
             $table->timestamps();
         });
 
