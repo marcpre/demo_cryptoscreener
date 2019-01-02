@@ -8,6 +8,7 @@ use App\Models\Exchange;
 use ccxt\NetworkError;
 use ccxt\binance;
 use ccxt\ExchangeError;
+use DateTime;
 use Illuminate\Console\Command;
 
 class BinanceTickData extends Command
@@ -48,13 +49,16 @@ class BinanceTickData extends Command
             // 'verbose' => true, // for debugging
             'timeout' => 30000,
         ));
+
+        // $exchange->verbose = true;
+
         try {
             // WARNING !!!
             // DO NOT CALL THIS MORE THAN ONCE IN 2 MINUTES OR YOU WILL GET BANNED BY BINANCE!
             // https://github.com/binance-exchange/binance-official-api-docs/blob/master/rest-api.md#limits
             $tick = $exchange->fetch_tickers();
-//            print_r ($result);
-            $this->info("Ticker: " . json_encode($tick));
+//          print_r ($result);
+//          $this->info("Ticker: " . json_encode($tick));
 
             /*
                 $content = json_encode($result);
@@ -91,9 +95,10 @@ class BinanceTickData extends Command
             $td->base_volume = $obj['baseVolume'];
             $td->quote_volume = $obj['quoteVolume'];
             $td->last_qty = $obj['info']['lastQty'];
-            $td->close_time = date("Y-m-d h:i:s", (int)$obj['info']['closeTime'] / 1000);
-            $td->open_time = date("Y-m-d h:i:s", (int)$obj['info']['openTime'] / 1000);
-            $td->exchange_timestamp = $obj['timestamp'];
+
+            $td->close_time = $this->convertToDateTimeObj($obj['info']['closeTime']);
+            $td->open_time = $this->convertToDateTimeObj($obj['info']['openTime']);
+            $td->exchange_timestamp = $this->convertToDateTimeObj($obj['timestamp']);
 
             // associate binance exchange with model
             $ex = Exchange::where('name', 'Binance')->first();;
@@ -140,5 +145,16 @@ class BinanceTickData extends Command
             $this->info("Insert pair: " . $td->pair);
         }
 
+    }
+
+
+    /**
+     * Generate DateTimeObj
+     * @param $t
+     */
+    private function convertToDateTimeObj($t)
+    {
+        $dt = (int)($t / 1000);
+        return DateTime::createFromFormat("U", (int)$dt / 1000);
     }
 }

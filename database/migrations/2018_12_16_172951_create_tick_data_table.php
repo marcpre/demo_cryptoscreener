@@ -40,11 +40,13 @@ class CreateTickDataTable extends Migration
             $table->decimal('base_volume', 50, 20)->nullable();
             $table->decimal('quote_volume', 50, 30)->nullable();
 
-            $table->date('open_time')->nullable();
-            $table->date('close_time')->nullable();
-            $table->date('exchange_timestamp');
+            $table->timestamp('open_time')->nullable();
+            $table->timestamp('close_time')->nullable();
+            $table->timestamp('exchange_timestamp')->nullable();
             $table->timestamps();
         });
+
+        //DB::unprepared('ALTER TABLE `tick_data` CONVERT TO CHARACTER SET utf8mb4');
     }
 
     /**
