@@ -19,11 +19,14 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+/*
 Route::get('/grid', function () {
     return view('grid');
 });
+*/
 
 Route::resource('/datatable', 'DataTableController');
+
 
 /*
 Route::get('/datatable', function () {

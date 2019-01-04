@@ -26,7 +26,7 @@ class DataTableController extends Controller
         // for debugging only TODO
         // $query = DB::getQueryLog();
 
-        return view('datatable')->with('todos', $c);
+        return view('datatable')->with('coins', $c);
     }
 
     /**

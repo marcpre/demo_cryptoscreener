@@ -19,22 +19,23 @@
     <!-- Styles -->
     <link href="{{ asset('css/jquery.dataTables.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/responsive.bootstrap.min.js') }}" rel="stylesheet">
+
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
-    <!-- ag-grid
-    <script src="https://unpkg.com/ag-grid-enterprise/dist/ag-grid-enterprise.min.noStyle.js"></script>
-    <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/dist/styles/ag-grid.css">
-    <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/dist/styles/ag-theme-balham.css">
-    -->
+<!-- ag-grid
+<script src="https://unpkg.com/ag-grid-enterprise/dist/ag-grid-enterprise.min.noStyle.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/ag-grid-community/dist/styles/ag-grid.css">
+<link rel="stylesheet" href="https://unpkg.com/ag-grid-community/dist/styles/ag-theme-balham.css">
+-->
 
 </head>
 <body>
 <div id="app">
-    @include('layouts.nav.mainNav')
+@include('layouts.nav.mainNav')
 
-    <main class="py-4">
-        @yield('content')
-    </main>
+<main class="py-4">
+    @yield('content')
+</main>
 </div>
 
 </body>

@@ -18,12 +18,24 @@
                         <td><input type="text" id="min" name="min"></td>
                     </tr>
                     <tr>
-                        <td>Maximum age:</td>
-                        <td><input type="text" id="max" name="max"></td>
+                        <td>Name:</td>
+                        <td><input type="text" id="min" name="min"></td>
+                        <td>Market Cap:</td>
+                        <td><input type="text" id="min" name="min"></td>
+                        <td>Minimum age:</td>
+                        <td><input type="text" id="min" name="min"></td>
+                        <td>Minimum age:</td>
+                        <td><input type="text" id="min" name="min"></td>
                     </tr>
                     <tr>
-                        <td>Maximum age:</td>
-                        <td><input type="text" id="max" name="max"></td>
+                        <td>Name:</td>
+                        <td><input type="text" id="min" name="min"></td>
+                        <td>Market Cap:</td>
+                        <td><input type="text" id="min" name="min"></td>
+                        <td>Minimum age:</td>
+                        <td><input type="text" id="min" name="min"></td>
+                        <td>Minimum age:</td>
+                        <td><input type="text" id="min" name="min"></td>
                     </tr>
                     </tbody>
                 </table>
@@ -43,7 +55,7 @@
                         <th>% 24h</th>
                         <th>% 7d</th>
                         <th>Exchange</th>
-                        <th>Description	</th>
+                        <th>Description</th>
                         <!--
                         <th>Market Cap</th>
                         <th>Target Price (% 7d)</th>
@@ -56,62 +68,24 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>Tiger Nixon</td>
-                        <td>System Architect</td>
-                        <td>Edinburgh</td>
-                        <td>61</td>
-                        <td>2011/04/25</td>
-                        <td>$320,800</td>
-                    </tr>
-                    <tr>
-                        <td>Garrett Winters</td>
-                        <td>Accountant</td>
-                        <td>Tokyo</td>
-                        <td>63</td>
-                        <td>2011/07/25</td>
-                        <td>$170,750</td>
-                    </tr>
-                    <tr>
-                        <td>Ashton Cox</td>
-                        <td>Junior Technical Author</td>
-                        <td>San Francisco</td>
-                        <td>66</td>
-                        <td>2009/01/12</td>
-                        <td>$86,000</td>
-                    </tr>
-                    <tr>
-                        <td>Cedric Kelly</td>
-                        <td>Senior Javascript Developer</td>
-                        <td>Edinburgh</td>
-                        <td>22</td>
-                        <td>2012/03/29</td>
-                        <td>$433,060</td>
-                    </tr>
-                    <tr>
-                        <td>Airi Satou</td>
-                        <td>Accountant</td>
-                        <td>Tokyo</td>
-                        <td>33</td>
-                        <td>2008/11/28</td>
-                        <td>$162,700</td>
-                    </tr>
-                    <tr>
-                        <td>Michael Bruce</td>
-                        <td>Javascript Developer</td>
-                        <td>Singapore</td>
-                        <td>29</td>
-                        <td>2011/06/27</td>
-                        <td>$183,000</td>
-                    </tr>
-                    <tr>
-                        <td>Donna Snider</td>
-                        <td>Customer Support</td>
-                        <td>New York</td>
-                        <td>27</td>
-                        <td>2011/01/25</td>
-                        <td>$112,000</td>
-                    </tr>
+                        @foreach ($coins as $key=>$c)
+                            <tr>
+                                <td>{{ ++$key }}</td>
+                                <td>{{ $c->coin_name }}</td>
+                                <td>{{ $c->symbol }}</td>
+                                <td>Sector</td>
+                                <td>Industry</td>
+                                <td>{{ $c->market_cap }}</td>
+                                <td>Price</td>
+                                <td>{{ $c->total_supply }}</td>
+                                <td>{{ $c->base_volume }}</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
 
@@ -132,10 +106,10 @@
                 var max = parseInt( $('#max').val(), 10 );
                 var age = parseFloat( data[3] ) || 0; // use data for the age column
 
-                if ( ( isNaN( min ) && isNaN( max ) ) ||
-                    ( isNaN( min ) && age <= max ) ||
-                    ( min <= age   && isNaN( max ) ) ||
-                    ( min <= age   && age <= max ) )
+                if (( isNaN( min ) && isNaN( max )) ||
+                    ( isNaN( min ) && age <= max )  ||
+                    ( min <= age   && isNaN( max )) ||
+                    ( min <= age   && age <= max ))
                 {
                     return true;
                 }
@@ -152,4 +126,5 @@
             } );
         } );
     </script>
+
 @endsection
