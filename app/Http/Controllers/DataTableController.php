@@ -22,7 +22,18 @@ class DataTableController extends Controller
             ->join('coin_basis', 'coin_basis.Id', '=', 'tick_data.coin_basis_id')
             ->join('exchanges', 'tick_data.exchanges_id', '=', 'exchanges.id')
             ->whereRaw('tick_data.id IN( SELECT MAX(tick_data.id) FROM tick_data GROUP BY tick_data.exchange_timestamp)')
-            ->get();
+            ->get()
+            ->map(function ($res) {
+                $res->base_volume = $this->shortNumberFormat($res->base_volume);
+
+                return $res;
+            });;
+
+            /*
+        foreach($c as $el) {
+            $this->shortNumberFormat($el->base_volume);
+        }
+*/
 
         // for debugging only TODO
         // $query = DB::getQueryLog();
@@ -94,5 +105,26 @@ class DataTableController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    /**
+     * Create short number format such as f.ex.: 2023150 -> 2.023M or 5430120215 -> 5.430B, with 3 digit precision
+     * @param $n
+     * @param int $precision
+     * @return string
+     */
+    public function shortNumberFormat($n, $precision = 3) {
+        if ($n < 1000000) {
+            // Anything less than a million
+            $n_format = number_format($n);
+        } else if ($n < 1000000000) {
+            // Anything less than a billion
+            $n_format = number_format($n / 1000000, $precision) . 'M';
+        } else {
+            // At least a billion
+            $n_format = number_format($n / 1000000000, $precision) . 'B';
+        }
+
+        return $n_format;
     }
 }

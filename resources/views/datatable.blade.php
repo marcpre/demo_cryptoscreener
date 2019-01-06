@@ -95,7 +95,7 @@
                                 <td>{{ $c->symbol }}</td>
                                 <td>{{ $c->algorithm }}</td>
                                 <td>{{ number_format($c->last_price, 8) }}</td>
-                                <td>{{ number_format($c->price_change_percentage, 8) }}</td>
+                                <td>{{ number_format($c->price_change_percentage * 100, 2)}}%</td>
                                 <td>{{ number_format($c->price_change, 8) }}</td>
                                 <td>{{ number_format($c->high_price, 8) }}</td>
                                 <td>{{ number_format($c->low_price, 8) }}</td>

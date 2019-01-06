@@ -158,6 +158,7 @@ class BinanceTickData extends Command
      */
     private function convertToDateTimeObj($t)
     {
+        // TODO fix it like the following: https://stackoverflow.com/questions/54013528/add-milliseconds-to-datetime-obj/54013703#54013703
         date_default_timezone_set('UTC');
         $result = date ('c', (int) round ($t / 1000));
         $msec = (int) $t % 1000;
