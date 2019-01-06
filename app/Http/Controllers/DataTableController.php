@@ -20,6 +20,7 @@ class DataTableController extends Controller
         $c = DB::table('tick_data')
             ->select('*')
             ->join('coin_basis', 'coin_basis.Id', '=', 'tick_data.coin_basis_id')
+            ->join('exchanges', 'tick_data.exchanges_id', '=', 'exchanges.id')
             ->whereRaw('tick_data.id IN( SELECT MAX(tick_data.id) FROM tick_data GROUP BY tick_data.exchange_timestamp)')
             ->get();
 
