@@ -180,9 +180,6 @@
     <script src="{{ asset('js/jquery.dataTables.min.js') }}" ></script>
     <script src="{{ asset('js/dataTables.bootstrap.min.js') }}" ></script>
 --}}
-    <script src="{{ asset('global_assets/js/demo_pages/jqueryui_sliders.js') }}"></script>
-
-
 
     <script>
         /* Custom filtering function which will search data in column four between two values
