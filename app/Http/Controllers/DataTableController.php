@@ -14,9 +14,8 @@ class DataTableController extends Controller
      */
     public function index()
     {
-        // remove me TODO
-        // DB::enableQueryLog();
 
+        // return all coins
         $c = DB::table('tick_data')
             ->select('*')
             ->join('coin_basis', 'coin_basis.Id', '=', 'tick_data.coin_basis_id')
@@ -29,16 +28,27 @@ class DataTableController extends Controller
                 return $res;
             });;
 
-            /*
-        foreach($c as $el) {
-            $this->shortNumberFormat($el->base_volume);
-        }
-*/
+        // get unique pairs
+        $p = DB::table('tick_data')
+            ->select('pair')
+            ->distinct()
+            ->get();
 
-        // for debugging only TODO
-        // $query = DB::getQueryLog();
+        // get unique symbols
+        // TODO optimize code for speed as it is the same
+        $s = DB::table('tick_data')
+            ->select('symbol')
+            ->join('coin_basis', 'coin_basis.Id', '=', 'tick_data.coin_basis_id')
+            ->join('exchanges', 'tick_data.exchanges_id', '=', 'exchanges.id')
+            ->whereRaw('tick_data.id IN( SELECT MAX(tick_data.id) FROM tick_data GROUP BY tick_data.exchange_timestamp)')
+            ->distinct()
+            ->orderBy('symbol', 'asc')
+            ->get();
 
-        return view('datatable')->with('coins', $c);
+        return view('home1')
+            ->with('coins', $c)
+            ->with('pairs', $p)
+            ->with('symbol', $s);
     }
 
     /**
@@ -54,7 +64,7 @@ class DataTableController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -65,7 +75,7 @@ class DataTableController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -76,7 +86,7 @@ class DataTableController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -87,8 +97,8 @@ class DataTableController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -99,7 +109,7 @@ class DataTableController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
@@ -113,7 +123,8 @@ class DataTableController extends Controller
      * @param int $precision
      * @return string
      */
-    public function shortNumberFormat($n, $precision = 3) {
+    public function shortNumberFormat($n, $precision = 3)
+    {
         if ($n < 1000000) {
             // Anything less than a million
             $n_format = number_format($n);

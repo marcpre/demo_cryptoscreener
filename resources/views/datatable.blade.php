@@ -5,15 +5,16 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
 
-                <table border="0" cellspacing="0" cellpadding="0">
+                <table class="table table-borderless table-sm" border="0" cellspacing="0" cellpadding="0">
                     <tbody>
                     <tr>
                         <td>Pair:</td>
                         <td>
                             <select id="nameDropDown">
                                 <option value=""></option>
-                                <option value="OAX/ETH	">OAX/ETH</option>
-                                <option value="SALT/ETH">SALT/ETH</option>
+                                @foreach ($pairs as $p)
+                                    <option value="{{ $p->pair }}">{{ $p->pair }}</option>
+                                @endforeach
                             </select>
                         </td>
                         <td>Market Cap:</td>
@@ -28,25 +29,15 @@
                         <td><input type="text" id="min" name="min"></td>
                         <td>Current MAX Volume:</td>
                         <td><input type="text" id="max" name="max"></td>
-                        <td>Minimum age:</td>
-                        <td>
-                            <select id="adfdas">
-                                <option value=""></option>
-                                <option value="Software Engineer">Software Engineer</option>
-                                <option value="Sales Assistant">Sales Assistant</option>
-                            </select>
-                        </td>
                     </tr>
                     <tr>
                         <td>Symbol:</td>
                         <td>
-                            <select id="dropdown1">
-                                <option value=""></option>
-                                <option value="ABY">ABY</option>
-                                <option value="NXT">NXT</option>
-                                <option value="RCN">RCN</option>
-                                <option value="OAX">OAX</option>
-                                <option value="BCN">BCN</option>
+                            <select id="symbolDropDown">
+                                    <option value=""></option>
+                                    @foreach ($symbol as $s)
+                                        <option value="{{ $s->symbol }}">{{ $s->symbol }}</option>
+                                    @endforeach
                             </select>
                         </td>
                         <td>Market Cap 2:</td>
@@ -141,7 +132,7 @@
             });
 
             // Filtering Dropdown
-            $('#dropdown1').on('change', function () {
+            $('#symbolDropDown').on('change', function () {
                 table.columns(2).search( this.value ).draw();
             } );
 
