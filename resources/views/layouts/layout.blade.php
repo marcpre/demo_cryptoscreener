@@ -124,6 +124,7 @@
 
 
 <!-- Page header -->
+<!--
 <div class="page-header">
     <div class="page-header-content header-elements-md-inline">
         <div class="page-title d-flex">
@@ -132,6 +133,7 @@
         </div>
     </div>
 </div>
+-->
 <!-- /page header -->
 
 

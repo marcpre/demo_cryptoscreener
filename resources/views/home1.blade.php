@@ -46,19 +46,16 @@
 
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label>Test:</label>
-                            <select class="form-control multiselect-select-all-filtering" multiple="multiple" data-fouc>
-                                <option value="cheese">Cheese</option>
-                                <option value="tomatoes">Tomatoes</option>
-                                <option value="mozarella">Mozzarella</option>
-                                <option value="mushrooms">test2</option>
-                            </select>
+                            <label>Lowest Price Range:</label>
+                            <div class="mb-1">
+                                <div class="ui-slider-horizontal jui-slider-range" data-fouc></div>
+                            </div>
                         </div>
                     </div>
 
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label>Test:</label>
+                            <label>Market Cap:</label>
                             <div class="mb-1">
                                 <div class="ui-slider-horizontal jui-slider-range" data-fouc></div>
                             </div>
@@ -69,45 +66,52 @@
 
                 <!-- Second Row -->
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-3">
                         <div class="form-group">
-                            <label>Email:</label>
-                            <input type="text" placeholder="eugene@kopyov.com" class="form-control">
+                            <label>Algorithm:</label>
+                            <select id="pairDD" class="form-control multiselect-select-all-filtering"
+                                    multiple="multiple" data-fouc>
+                                @foreach ($pairs as $p)
+                                    <option value="{{ $p->pair }}">{{ $p->pair }}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
 
-                    <div class="col-md-6">
+                    <div class="col-md-3">
                         <div class="form-group">
-                            <label>Phone #:</label>
-                            <input type="text" placeholder="+99-99-9999-9999" class="form-control">
+                            <label>Exchange:</label>
+                            <select id="pairDD" class="form-control multiselect-select-all-filtering"
+                                    multiple="multiple" data-fouc>
+                                @foreach ($pairs as $p)
+                                    <option value="{{ $p->pair }}">{{ $p->pair }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Last Price Range:</label>
+                            <div class="mb-1">
+                                <div class="ui-slider-horizontal jui-slider-range" data-fouc></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Highest Price Range:</label>
+                            <div class="mb-1">
+                                <div class="ui-slider-horizontal jui-slider-range" data-fouc></div>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <!-- /Second Row -->
 
                 <!-- Third Row -->
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>Country:</label>
-                            <select data-placeholder="Select your country" class="form-control form-control-select2"
-                                    data-fouc>
-                                <option></option>
-                                <option value="Cambodia">Cambodia</option>
-                                <option value="Cameroon">Cameroon</option>
-                                <option value="Canada">Canada</option>
-                                <option value="Cape Verde">Cape Verde</option>
-                            </select>
-                        </div>
-                    </div>
 
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>State/Province:</label>
-                            <input type="text" placeholder="Bayern" class="form-control">
-                        </div>
-                    </div>
-                </div>
                 <!-- /Third Row -->
 
             </fieldset>
@@ -224,7 +228,6 @@
                 });
 
                 search = search.join('|');
-                console.log("search: " + search)
                 table.column(2).search(search, true, false).draw();
             });
 
