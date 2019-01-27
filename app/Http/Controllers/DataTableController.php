@@ -45,10 +45,31 @@ class DataTableController extends Controller
             ->orderBy('symbol', 'asc')
             ->get();
 
+        // get unique "exchanges"
+        $e = DB::table('exchanges')
+            ->select('name')
+            ->orderBy('name', 'asc')
+            ->distinct()
+            ->get();
+
+        // get unique "exchanges"
+        $a = DB::table('tick_data')
+            ->select('algorithm')
+            ->join('coin_basis', 'coin_basis.Id', '=', 'tick_data.coin_basis_id')
+            ->join('exchanges', 'tick_data.exchanges_id', '=', 'exchanges.id')
+            ->whereRaw('tick_data.id IN( SELECT MAX(tick_data.id) FROM tick_data GROUP BY tick_data.exchange_timestamp)')
+            ->distinct()
+            ->orderBy('symbol', 'asc')
+            ->get();
+
+
         return view('home')
             ->with('coins', $c)
             ->with('pairs', $p)
-            ->with('symbol', $s);
+            ->with('symbol', $s)
+            ->with('exchanges', $e)
+            ->with('algorithms', $a);
+
     }
 
     /**
