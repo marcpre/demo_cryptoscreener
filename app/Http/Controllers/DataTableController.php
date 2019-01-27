@@ -45,7 +45,7 @@ class DataTableController extends Controller
             ->orderBy('symbol', 'asc')
             ->get();
 
-        return view('home1SO')
+        return view('home')
             ->with('coins', $c)
             ->with('pairs', $p)
             ->with('symbol', $s);

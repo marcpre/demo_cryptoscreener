@@ -1,4 +1,4 @@
-@extends('layouts.layoutSO')
+@extends('layouts.layout')
 
 @section('content')
     <!-- Default ordering -->

@@ -27,7 +27,7 @@ Route::get('/grid', function () {
 
 Route::resource('/datatable', 'DataTableController');
 
-Route::resource('/home1SO', 'DataTableController');
+Route::resource('/home', 'DataTableController');
 
 
 
