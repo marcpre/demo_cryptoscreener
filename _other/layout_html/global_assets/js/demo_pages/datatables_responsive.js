@@ -48,7 +48,6 @@ var DatatableResponsive = function() {
 
 
         // Column controlled child rows
-
         $('.datatable-responsive-column-controlled').DataTable({
             responsive: {
                 details: {

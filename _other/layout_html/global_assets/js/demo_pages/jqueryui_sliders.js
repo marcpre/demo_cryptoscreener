@@ -27,7 +27,7 @@ var JqueryUiSliders = function() {
         //
         // Horizontal sliders
         //
-/*
+
         // Basic slider
         $('.jui-slider').slider({
             isRTL: $('html').attr('dir') == 'rtl' ? true : false
@@ -49,7 +49,6 @@ var JqueryUiSliders = function() {
             max: 500,
             step: 50
         });
-        */
 
         // Range slider
         $('.jui-slider-range').slider({
@@ -59,7 +58,7 @@ var JqueryUiSliders = function() {
             max: 60,
             values: [10, 50]
         });
-/*
+
         // Fixed minimum
         $('.jui-slider-range-min').slider({
             isRTL: $('html').attr('dir') == 'rtl' ? true : false,
@@ -94,7 +93,7 @@ var JqueryUiSliders = function() {
             max: 60,
             values: [ 15, 45 ]
         });
-*/
+
         var sliderMethods = document.querySelector('.switchery');
         var sliderMethodsInit = new Switchery(sliderMethods);
         sliderMethods.onchange = function() {
@@ -106,7 +105,6 @@ var JqueryUiSliders = function() {
             }
         };
 
-        /*
         // Disabled slider
         $('.jui-slider-disabled').slider({
             isRTL: $('html').attr('dir') == 'rtl' ? true : false,
@@ -114,12 +112,12 @@ var JqueryUiSliders = function() {
             value: 50,
             disabled: true
         });
-*/
+
 
         //
         // Vertical sliders
         //
-/*
+
         // Basic
         $('.jui-slider-vertical-default > span').each(function() {
 
@@ -170,7 +168,7 @@ var JqueryUiSliders = function() {
                 orientation: 'vertical'
             });
         });
-*/
+
 
         // Slider pips
         // ------------------------------
@@ -178,7 +176,7 @@ var JqueryUiSliders = function() {
         //
         // Horizontal sliders
         //
-/*
+
         // Basic
         $('.jui-slider-pips').slider({
             isRTL: $('html').attr('dir') == 'rtl' ? true : false,
@@ -291,12 +289,12 @@ var JqueryUiSliders = function() {
         $('.jui-slider-local').slider('float' , {
             labels: hanziNums
         });
-*/
+
 
         //
         // Vertical sliders
         //
-/*
+
         // Basic
         $('.jui-slider-vertical-pips > span').each(function() {
             var value = parseInt($(this).text());
@@ -343,7 +341,6 @@ var JqueryUiSliders = function() {
         });
         $('.jui-slider-vertical-minmax > span').slider('pips');
         $('.jui-slider-vertical-minmax > span').slider('float');
-        */
     };
 
 
