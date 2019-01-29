@@ -95,6 +95,8 @@
                             <label>Last Price Range:</label>
                             <div class="mb-1">
                                 <div class="ui-slider-horizontal jui-slider-range" data-fouc></div>
+                                <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">1010</input>
+                                <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">10</input>
                             </div>
                         </div>
                     </div>
