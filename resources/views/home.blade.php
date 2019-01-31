@@ -48,7 +48,7 @@
                         <div class="form-group">
                             <label>Lowest Price Range:</label>
                             <div class="mb-1">
-                                <div class="ui-slider-horizontal jui-slider-range" data-fouc></div>
+                                <input type="text" class="form-control ion-height-helper" id="ion-range" data-fouc>
                             </div>
                         </div>
                     </div>
@@ -57,7 +57,7 @@
                         <div class="form-group">
                             <label>Market Cap:</label>
                             <div class="mb-1">
-                                <div class="ui-slider-horizontal jui-slider-range" data-fouc></div>
+                                <input type="text" class="form-control ion-height-helper" id="market-cap-range-ion" data-fouc>
                             </div>
                         </div>
                     </div>
@@ -94,9 +94,7 @@
                         <div class="form-group">
                             <label>Last Price Range:</label>
                             <div class="mb-1">
-                                <div class="ui-slider-horizontal jui-slider-range" data-fouc></div>
-                                <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">1010</input>
-                                <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">10</input>
+                                <input type="text" class="form-control ion-height-helper" id="last-price-range-ion" data-fouc>
                             </div>
                         </div>
                     </div>
@@ -105,7 +103,7 @@
                         <div class="form-group">
                             <label>Highest Price Range:</label>
                             <div class="mb-1">
-                                <div class="ui-slider-horizontal jui-slider-range" data-fouc></div>
+                                <input type="text" class="form-control ion-height-helper" id="highest-price-range-ion" data-fouc>
                             </div>
                         </div>
                     </div>

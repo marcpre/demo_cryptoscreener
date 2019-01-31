@@ -48,6 +48,30 @@ var IonSlider = function() {
             to: 800
         });
 
+        $('#ion-range1').ionRangeSlider({
+            type: 'double',
+            min: 0,
+            max: 1000,
+            from: 200,
+            to: 800
+        });
+
+        $('#ion-range2').ionRangeSlider({
+            type: 'double',
+            min: 0,
+            max: 1000,
+            from: 200,
+            to: 800
+        });
+
+        $('#ion_lowestPriceRange').ionRangeSlider({
+            type: 'double',
+            min: 0,
+            max: 1000,
+            from: 200,
+            to: 800
+        });
+
         // Range with negative values
         $('#ion-negative').ionRangeSlider({
             type: 'double',
