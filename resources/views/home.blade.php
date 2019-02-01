@@ -57,7 +57,8 @@
                         <div class="form-group">
                             <label>Market Cap:</label>
                             <div class="mb-1">
-                                <input type="text" class="form-control ion-height-helper" id="market-cap-range-ion" data-fouc>
+                                <input type="text" class="form-control ion-height-helper" id="market-cap-range-ion"
+                                       data-fouc>
                             </div>
                         </div>
                     </div>
@@ -94,7 +95,8 @@
                         <div class="form-group">
                             <label>Last Price Range:</label>
                             <div class="mb-1">
-                                <input type="text" class="form-control ion-height-helper" id="last-price-range-ion" data-fouc>
+                                <input type="text" class="form-control ion-height-helper" id="last-price-range-ion"
+                                       data-fouc>
                             </div>
                         </div>
                     </div>
@@ -103,7 +105,8 @@
                         <div class="form-group">
                             <label>Highest Price Range:</label>
                             <div class="mb-1">
-                                <input type="text" class="form-control ion-height-helper" id="highest-price-range-ion" data-fouc>
+                                <input type="text" class="form-control ion-height-helper" id="highest-price-range-ion"
+                                       data-fouc>
                             </div>
                         </div>
                     </div>
@@ -178,7 +181,7 @@
     <script>
 
         $(document).ready(function () {
-            const table = $('.datatable-responsive').DataTable();
+            var table = $('.datatable-responsive').DataTable();
 
             // Filtering Dropdown
             $('#pairDD').on('change', function () {
@@ -224,6 +227,41 @@
                 search = search.join('|');
                 table.column(10).search(search, true, false).draw();
             });
+
+            /**
+             * Sliders
+             */
+
+            var min
+            var max
+            $('#ion-range').on('change', function () {
+                var $inp = $(this);
+                min = parseFloat($inp.data("from"));   // input data-from attribute
+                max = parseFloat($inp.data("to"));       // input data-to attribute
+
+                // let search = [];
+                console.log(min, max);       // all values
+
+                // table.draw();
+                // table.column(4).search(search, true, false).draw();
+            });
+
+
+            $.fn.dataTable.ext.search.push(
+                function (settings, data, dataIndex) {
+                    var col = parseFloat(data[4]) || 0; // use data for the age column
+
+                    if ((isNaN(min) && isNaN(max)) ||
+                        (isNaN(min) && col <= max) ||
+                        (min <= col && isNaN(max)) ||
+                        (min <= col && col <= max)) {
+                        return true;
+                    }
+                    return false;
+                    console.log("data")
+                    console.log(data)
+                }
+            );
 
         });
     </script>

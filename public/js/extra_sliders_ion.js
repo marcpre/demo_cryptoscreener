@@ -24,14 +24,28 @@ var IonSlider = function() {
             return;
         }
 
-        // Basic range slider
-        $('#ion-range').ionRangeSlider({
+        var table = $('.datatable-responsive').DataTable();
+
+        var lowestPriceRange = $("#ion-range");
+
+        /**
+         * Lowest Price Range
+         */
+        lowestPriceRange.ionRangeSlider({
             type: 'double',
             min: 0,
-            max: 1000,
-            from: 200,
-            to: 800
+            max: 1,
+            step: 0.0001,
+            from: 0,
+            to: 0.0001,
+            onFinish:function () {
+                table.draw();
+            }
         });
+
+        /**
+         * Market Cap
+         */
 
         $('#market-cap-range-ion').ionRangeSlider({
             type: 'double',
