@@ -4,25 +4,25 @@
     <!-- Default ordering -->
     <div class="card">
         <div class="card-header header-elements-inline">
-            <h5 class="card-title">Default ordering</h5>
+            <h5 class="card-title">Filters</h5>
             <div class="header-elements">
                 <div class="list-icons">
                     <a class="list-icons-item" data-action="collapse"></a>
-                    <a class="list-icons-item" data-action="reload"></a>
-                    <a class="list-icons-item" data-action="remove"></a>
+                    <!-- <a class="list-icons-item" data-action="reload"></a> -->
+                    <!-- <a class="list-icons-item" data-action="remove"></a> -->
                 </div>
             </div>
         </div>
 
         <div class="card-body">
             <fieldset>
-                <legend class="font-weight-semibold"><i class="icon-cash4 mr-2"></i>Filter and Select</legend>
+                <!-- <legend class="font-weight-semibold"><i class="icon-cash4 mr-2"></i>Filter and Select</legend> -->
 
                 <!-- First Row -->
                 <div class="row">
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label>Pairs:</label>
+                            <label>Pair:</label>
                             <select id="pairDD" class="form-control multiselect-select-all-filtering"
                                     multiple="multiple" data-fouc>
                                 @foreach ($pairs as $p)
@@ -46,7 +46,7 @@
 
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label>Lowest Price Range:</label>
+                            <label>Volume:</label>
                             <div class="mb-1">
                                 <input type="text" class="form-control ion-height-helper" id="ion-range" data-fouc>
                             </div>
@@ -56,10 +56,12 @@
                     <div class="col-md-3">
                         <div class="form-group">
                             <label>Market Cap:</label>
-                            <div class="mb-1">
-                                <input type="text" class="form-control ion-height-helper" id="market-cap-range-ion"
-                                       data-fouc>
-                            </div>
+                            <select id="marketcapDD" class="form-control multiselect-select-all-filtering"
+                                    multiple="multiple" data-fouc>
+                                @foreach ($symbol as $s)
+                                    <option value="{{ $s->symbol }}">{{ $s->symbol }}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
                 </div>
@@ -93,10 +95,22 @@
 
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label>Last Price Range:</label>
+                            <label>% Change:</label>
                             <div class="mb-1">
-                                <input type="text" class="form-control ion-height-helper" id="last-price-range-ion"
-                                       data-fouc>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <button type="button" class="btn btn-light dropdown-toggle legitRipple" data-toggle="dropdown" aria-expanded="false">Action</button>
+                                        <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 38px, 0px);">
+                                            <a href="#" class="dropdown-item">Below</a>
+                                            <a href="#" class="dropdown-item">Below or equal</a>
+                                            <a href="#" class="dropdown-item">Above</a>
+                                            <a href="#" class="dropdown-item">Above or equal</a>
+                                            <a href="#" class="dropdown-item">Equal</a>
+                                            <a href="#" class="dropdown-item">Not equal</a>
+                                        </div>
+                                    </div>
+                                    <input type="text" class="form-control" placeholder="Left dropdown">
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -105,8 +119,20 @@
                         <div class="form-group">
                             <label>Highest Price Range:</label>
                             <div class="mb-1">
-                                <input type="text" class="form-control ion-height-helper" id="highest-price-range-ion"
-                                       data-fouc>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <button type="button" class="btn btn-light dropdown-toggle legitRipple" data-toggle="dropdown" aria-expanded="false">Action</button>
+                                        <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 38px, 0px);">
+                                            <a href="#" class="dropdown-item">Below</a>
+                                            <a href="#" class="dropdown-item">Below or equal</a>
+                                            <a href="#" class="dropdown-item">Above</a>
+                                            <a href="#" class="dropdown-item">Above or equal</a>
+                                            <a href="#" class="dropdown-item">Equal</a>
+                                            <a href="#" class="dropdown-item">Not equal</a>
+                                        </div>
+                                    </div>
+                                    <input type="text" class="form-control" placeholder="Left dropdown">
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -119,12 +145,12 @@
 
     <div class="card">
         <div class="card-header header-elements-inline">
-            <h5 class="card-title">Default ordering</h5>
+            <h5 class="card-title">Digital Assets</h5>
             <div class="header-elements">
                 <div class="list-icons">
-                    <a class="list-icons-item" data-action="collapse"></a>
-                    <a class="list-icons-item" data-action="reload"></a>
-                    <a class="list-icons-item" data-action="remove"></a>
+                    <!-- <a class="list-icons-item" data-action="collapse"></a> -->
+                    <!-- <a class="list-icons-item" data-action="reload"></a> -->
+                    <!-- <a class="list-icons-item" data-action="remove"></a> -->
                 </div>
             </div>
         </div>

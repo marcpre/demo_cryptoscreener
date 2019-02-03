@@ -73,9 +73,14 @@
         <div class="collapse navbar-collapse" id="navbar-mobile">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a href="#" class="navbar-nav-link">Text link</a>
+                    <a href="#" class="navbar-nav-link">Screener</a>
                 </li>
 
+                <li class="nav-item">
+                    <a href="#" class="navbar-nav-link">News</a>
+                </li>
+
+                <!--
                 <li class="nav-item dropdown">
                     <a href="#" class="navbar-nav-link dropdown-toggle" data-toggle="dropdown">Menu</a>
 
@@ -87,8 +92,9 @@
                         <a href="#" class="dropdown-item">Separate action</a>
                     </div>
                 </li>
+                -->
             </ul>
-
+<!--
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
                     <a href="#" class="navbar-nav-link">
@@ -120,6 +126,7 @@
                     </div>
                 </li>
             </ul>
+            -->
         </div>
     </div>
     <!-- /main navbar -->

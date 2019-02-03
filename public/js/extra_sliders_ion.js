@@ -46,7 +46,7 @@ var IonSlider = function() {
         /**
          * Market Cap
          */
-
+/*
         $('#market-cap-range-ion').ionRangeSlider({
             type: 'double',
             min: 0,
@@ -70,6 +70,7 @@ var IonSlider = function() {
             from: 200,
             to: 800
         });
+        */
     };
 
 

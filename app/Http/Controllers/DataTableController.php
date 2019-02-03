@@ -52,14 +52,14 @@ class DataTableController extends Controller
             ->distinct()
             ->get();
 
-        // get unique "exchanges"
+        // get unique "algorithm"
         $a = DB::table('tick_data')
             ->select('algorithm')
             ->join('coin_basis', 'coin_basis.Id', '=', 'tick_data.coin_basis_id')
             ->join('exchanges', 'tick_data.exchanges_id', '=', 'exchanges.id')
             ->whereRaw('tick_data.id IN( SELECT MAX(tick_data.id) FROM tick_data GROUP BY tick_data.exchange_timestamp)')
             ->distinct()
-            ->orderBy('symbol', 'asc')
+            ->orderBy('algorithm', 'asc')
             ->get();
 
 
