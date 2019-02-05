@@ -37,6 +37,9 @@
     <!-- /load plugin -->
 
     <!-- Theme JS files -->
+    <script src="https://gitcdn.link/repo/marcpre/demo_cryptoscreener/master/_other/layout_html/global_assets/js/plugins/extensions/jquery_ui/interactions.min.js"></script>
+    <script src="https://gitcdn.link/repo/marcpre/demo_cryptoscreener/master/_other/layout_html/global_assets/js/plugins/forms/selects/select2.min.js"></script>
+
     <script src="https://gitcdn.link/repo/marcpre/demo_cryptoscreener/master/_other/layout_html/global_assets/js/plugins/sliders/ion_rangeslider.min.js"></script>
     <script src="https://gitcdn.link/repo/marcpre/demo_cryptoscreener/master/_other/layout_html/global_assets/js/plugins/ui/moment/moment_locales.min.js"></script>
 
@@ -45,6 +48,7 @@
 
     <script src="https://gitcdn.link/repo/marcpre/demo_cryptoscreener/master/_other/layout_html/global_assets/js/demo_pages/form_multiselect.js"></script>
 
+    <script src="{{asset('js/form_select2.js')}}"></script>
     <script src="{{asset('js/extra_sliders_ion.js')}}"></script>
 
 

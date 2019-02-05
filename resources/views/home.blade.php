@@ -98,18 +98,15 @@
                             <label>% Change:</label>
                             <div class="mb-1">
                                 <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <button type="button" class="btn btn-light dropdown-toggle legitRipple" data-toggle="dropdown" aria-expanded="false">Action</button>
-                                        <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 38px, 0px);">
-                                            <a href="#" class="dropdown-item">Below</a>
-                                            <a href="#" class="dropdown-item">Below or equal</a>
-                                            <a href="#" class="dropdown-item">Above</a>
-                                            <a href="#" class="dropdown-item">Above or equal</a>
-                                            <a href="#" class="dropdown-item">Equal</a>
-                                            <a href="#" class="dropdown-item">Not equal</a>
-                                        </div>
-                                    </div>
-                                    <input type="text" class="form-control" placeholder="Left dropdown">
+                                    <select id="operator" class="form-control select-search select-fixed-single"  data-fouc>
+                                        <option value="<"  >Below</option>
+                                        <option value="<=" >Below or equal</option>
+                                        <option value=">"  >Above</option>
+                                        <option value=">=" >Above or equal</option>
+                                        <option value="==" >Equal</option>
+                                        <option value="!=" >Not equal</option>
+                                    </select>
+                                    <input id="changePercentageInput" style="margin-left: 10px;" type="text" class="form-control" placeholder="CHG %">
                                 </div>
                             </div>
                         </div>
@@ -117,21 +114,18 @@
 
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label>Highest Price Range:</label>
+                            <label>Last Price Range:</label>
                             <div class="mb-1">
                                 <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <button type="button" class="btn btn-light dropdown-toggle legitRipple" data-toggle="dropdown" aria-expanded="false">Action</button>
-                                        <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 38px, 0px);">
-                                            <a href="#" class="dropdown-item">Below</a>
-                                            <a href="#" class="dropdown-item">Below or equal</a>
-                                            <a href="#" class="dropdown-item">Above</a>
-                                            <a href="#" class="dropdown-item">Above or equal</a>
-                                            <a href="#" class="dropdown-item">Equal</a>
-                                            <a href="#" class="dropdown-item">Not equal</a>
-                                        </div>
-                                    </div>
-                                    <input type="text" class="form-control" placeholder="Left dropdown">
+                                    <select id="operatorLast" class="form-control select-search select-fixed-single" style="margin-right: 10px;" data-fouc>
+                                        <option value="<"  >Below</option>
+                                        <option value="<=" >Below or equal</option>
+                                        <option value=">"  >Above</option>
+                                        <option value=">=" >Above or equal</option>
+                                        <option value="==" >Equal</option>
+                                        <option value="!=" >Not equal</option>
+                                    </select>
+                                    <input id="lastInput" style="margin-left: 10px;" type="text" class="form-control" placeholder="Last">
                                 </div>
                             </div>
                         </div>
@@ -252,6 +246,67 @@
 
                 search = search.join('|');
                 table.column(10).search(search, true, false).draw();
+            });
+
+            /**
+             * Dropdown with Input Field
+             */
+            var op = "<";
+            var operators = {
+                "==": function (a, b) { return a == b; },
+                "<=": function (a, b) { return a <= b; },
+                ">=": function (a, b) { return a >= b; },
+                "<": function (a, b) { return a < b; },
+                ">": function (a, b) { return a > b; },
+                "!=": function (a, b) { return a != b; }
+            };
+
+            //% Change
+            $.fn.dataTable.ext.search.push(
+                function (settings, data, dataIndex) {
+                    var changePercentageInput = parseFloat($('#changePercentageInput').val(), 10);
+                    var changePerc = parseFloat(data[5]) || 0; // use data for the changePerc column
+
+                    if ((isNaN(changePercentageInput)) || (operators[op](+changePerc, +changePercentageInput))) {
+                        console.log(changePercentageInput + " " + changePerc);
+                        return true;
+                    }
+                    return false;
+                }
+            );
+
+            $('#operator').on('change', function () {
+                op = this.value;
+                console.log(op)
+                table.draw();
+            });
+
+            $('#changePercentageInput').keyup(function() {
+                table.draw();
+            });
+
+            //Last
+            var opl = "<";
+            $.fn.dataTable.ext.search.push(
+                function (settings, data, dataIndex) {
+                    let c = parseFloat($('#lastInput').val(), 10);
+                    let l = parseFloat(data[4]) || 0; // use data for the changePerc column
+
+                    if ((isNaN(c)) || (operators[opl](+l, +c))) {
+                        console.log(c + " " + l);
+                        return true;
+                    }
+                    return false;
+                }
+            );
+
+            $('#operatorLast').on('change', function () {
+                opl = this.value;
+                table.draw();
+            });
+
+            $('#lastInput').keyup(function() {
+                table.draw();
             });
 
             /**

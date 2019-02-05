@@ -28,12 +28,11 @@ var Select2Selects = function() {
         //
         // Basic examples
         //
-/*
+
         // Default initialization
         $('.select').select2({
             minimumResultsForSearch: Infinity
         });
-        */
 
         // Select with search
         $('.select-search').select2();
@@ -41,9 +40,9 @@ var Select2Selects = function() {
         // Fixed width. Single select
         $('.select-fixed-single').select2({
             minimumResultsForSearch: Infinity,
-            width: 50
+            width: 250
         });
-/*
+
         // Fixed width. Multiple selects
         $('.select-fixed-multiple').select2({
             minimumResultsForSearch: Infinity,
@@ -109,12 +108,12 @@ var Select2Selects = function() {
             containment: '.sortable-target',
             items: '.select2-selection__choice:not(.select2-search--inline)'
         });
-*/
+
 
         //
         // Single select with icons
         //
-/*
+
         // Format icon
         function iconFormat(icon) {
             var originalOption = icon.element;
@@ -131,12 +130,12 @@ var Select2Selects = function() {
             templateSelection: iconFormat,
             escapeMarkup: function(m) { return m; }
         });
-*/
+
 
         //
         // Customize matched results
         //
-/*
+
         // Setup matcher
         function matchStart (term, text) {
             if (text.toUpperCase().indexOf(term.toUpperCase()) == 0) {
@@ -154,11 +153,12 @@ var Select2Selects = function() {
                 matcher: oldMatcher(matchStart)
             });
         });
-*/
+
+
         //
         // Loading arrays of data
         //
-/*
+
         // Data
         var array_data = [
             {id: 0, text: 'enhancement'},
@@ -174,11 +174,12 @@ var Select2Selects = function() {
             minimumResultsForSearch: Infinity,
             data: array_data
         });
-*/
+
+
         //
         // Loading remote data
         //
-/*
+
         // Format displayed data
         function formatRepo (repo) {
             if (repo.loading) return repo.text;
@@ -321,21 +322,20 @@ var Select2Selects = function() {
         create_menu_multiple();
         $('.access-multiple-create').on('click', function () { return create_menu_multiple()});
         $('.access-multiple-destroy').on('click', function () { $('.select-access-multiple-create').select2('destroy'); });
-*/
+
 
         // Clear selection
-        /*
         $('.select-access-multiple-clear').select2({
             minimumResultsForSearch: Infinity
         });
         $('.access-multiple-clear').on('click', function () { $('.select-access-multiple-clear').val(null).trigger('change'); });
-        */
     };
 
 
     //
     // Return objects assigned to module
     //
+
     return {
         init: function() {
             _componentSelect2();
