@@ -249,9 +249,27 @@
             });
 
             /**
+             * Sliders
+             */
+            var min
+            var max
+            $('#ion-range').on('change', function () {
+                var $inp = $(this);
+                min = parseFloat($inp.data("from"));   // input data-from attribute
+                max = parseFloat($inp.data("to"));       // input data-to attribute
+
+                // let search = [];
+                console.log(min, max);       // all values
+
+                // table.draw();
+                // table.column(4).search(search, true, false).draw();
+            });
+
+            /**
              * Dropdown with Input Field
              */
-            var op = "<";
+            var op = "<"; // % CHG
+            var opl = "<"; // last
             var operators = {
                 "==": function (a, b) { return a == b; },
                 "<=": function (a, b) { return a <= b; },
@@ -272,6 +290,31 @@
                         return true;
                     }
                     return false;
+                }, function (settings, data, dataIndex) {
+                    let c = parseFloat($('#lastInput').val(), 10);
+                    let l = parseFloat(data[4]) || 0; // CHG %
+
+                    if ((isNaN(c)) || (operators[opl](+l, +c))) {
+                        // console.log(c + " " + l);
+                        return true;
+                    }
+                    return false;
+                }, function (settings, data, dataIndex) {
+                    // convert thousand seperator to real float number
+                    // uses regex for replaceAll: https://stackoverflow.com/questions/1144783/how-to-replace-all-occurrences-of-a-string-in-javascript
+                    var col = parseFloat(data[9].replace(/,/g,"")) || 0; // VOLUME
+
+                    if ((isNaN(min) && isNaN(max)) ||
+                        (isNaN(min) && col <= max) ||
+                        (min <= col && isNaN(max)) ||
+                        (min <= col && col <= max)) {
+                        console.log("data1")
+                        console.log(data)
+                        return true;
+                    }
+                    return false;
+                    console.log("data")
+                    console.log(data)
                 }
             );
 
@@ -286,20 +329,6 @@
             });
 
             //Last
-            var opl = "<";
-            $.fn.dataTable.ext.search.push(
-                function (settings, data, dataIndex) {
-                    let c = parseFloat($('#lastInput').val(), 10);
-                    let l = parseFloat(data[4]) || 0; // CHG %
-
-                    if ((isNaN(c)) || (operators[opl](+l, +c))) {
-                        // console.log(c + " " + l);
-                        return true;
-                    }
-                    return false;
-                }
-            );
-
             $('#operatorLast').on('change', function () {
                 opl = this.value;
                 table.draw();
@@ -308,41 +337,6 @@
             $('#lastInput').keyup(function() {
                 table.draw();
             });
-
-            /**
-             * Sliders
-             */
-
-            var min
-            var max
-            $('#ion-range').on('change', function () {
-                var $inp = $(this);
-                min = parseFloat($inp.data("from"));   // input data-from attribute
-                max = parseFloat($inp.data("to"));       // input data-to attribute
-
-                // let search = [];
-                console.log(min, max);       // all values
-
-                // table.draw();
-                // table.column(4).search(search, true, false).draw();
-            });
-
-
-            $.fn.dataTable.ext.search.push(
-                function (settings, data, dataIndex) {
-                    var col = parseFloat(data[8]) || 0; // use data for the age column
-
-                    if ((isNaN(min) && isNaN(max)) ||
-                        (isNaN(min) && col <= max) ||
-                        (min <= col && isNaN(max)) ||
-                        (min <= col && col <= max)) {
-                        return true;
-                    }
-                    return false;
-                    console.log("data")
-                    console.log(data)
-                }
-            );
 
         });
     </script>

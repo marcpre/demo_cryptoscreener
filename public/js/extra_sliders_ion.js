@@ -36,7 +36,7 @@ var IonSlider = function() {
             min: 0,
             max: 10000000,
             step: 1000,
-            from: 0,
+            from: 25000,
             to: 500000,
             onFinish:function () {
                 table.draw();

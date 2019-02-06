@@ -25,7 +25,7 @@ class DataTableController extends Controller
             ->map(function ($res) {
 //                // short to number format such as M, Bn etc.
 //                $res->base_volume = $this->shortNumberFormat($res->base_volume);
-                $res->base_volume = number_format($res->base_volume, 0);
+                $res->base_volume = number_format($res->base_volume, 0, ".", ",");
                 return $res;
             });
 
