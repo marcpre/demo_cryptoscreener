@@ -268,7 +268,7 @@
                     var changePerc = parseFloat(data[5]) || 0; // use data for the changePerc column
 
                     if ((isNaN(changePercentageInput)) || (operators[op](+changePerc, +changePercentageInput))) {
-                        console.log(changePercentageInput + " " + changePerc);
+                        // console.log(changePercentageInput + " " + changePerc);
                         return true;
                     }
                     return false;
@@ -277,7 +277,7 @@
 
             $('#operator').on('change', function () {
                 op = this.value;
-                console.log(op)
+                // console.log(op)
                 table.draw();
             });
 
@@ -290,10 +290,10 @@
             $.fn.dataTable.ext.search.push(
                 function (settings, data, dataIndex) {
                     let c = parseFloat($('#lastInput').val(), 10);
-                    let l = parseFloat(data[4]) || 0; // use data for the changePerc column
+                    let l = parseFloat(data[4]) || 0; // CHG %
 
                     if ((isNaN(c)) || (operators[opl](+l, +c))) {
-                        console.log(c + " " + l);
+                        // console.log(c + " " + l);
                         return true;
                     }
                     return false;
@@ -330,7 +330,7 @@
 
             $.fn.dataTable.ext.search.push(
                 function (settings, data, dataIndex) {
-                    var col = parseFloat(data[4]) || 0; // use data for the age column
+                    var col = parseFloat(data[8]) || 0; // use data for the age column
 
                     if ((isNaN(min) && isNaN(max)) ||
                         (isNaN(min) && col <= max) ||

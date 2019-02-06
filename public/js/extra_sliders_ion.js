@@ -34,10 +34,10 @@ var IonSlider = function() {
         lowestPriceRange.ionRangeSlider({
             type: 'double',
             min: 0,
-            max: 1,
-            step: 0.0001,
+            max: 10000000,
+            step: 1000,
             from: 0,
-            to: 0.0001,
+            to: 500000,
             onFinish:function () {
                 table.draw();
             }

@@ -23,10 +23,11 @@ class DataTableController extends Controller
             ->whereRaw('tick_data.id IN( SELECT MAX(tick_data.id) FROM tick_data GROUP BY tick_data.exchange_timestamp)')
             ->get()
             ->map(function ($res) {
-                $res->base_volume = $this->shortNumberFormat($res->base_volume);
-
+//                // short to number format such as M, Bn etc.
+//                $res->base_volume = $this->shortNumberFormat($res->base_volume);
+                $res->base_volume = number_format($res->base_volume, 0);
                 return $res;
-            });;
+            });
 
         // get unique pairs
         $p = DB::table('tick_data')
