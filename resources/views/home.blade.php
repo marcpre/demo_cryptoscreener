@@ -55,13 +55,20 @@
 
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label>Market Cap:</label>
-                            <select id="marketcapDD" class="form-control multiselect-select-all-filtering"
-                                    multiple="multiple" data-fouc>
-                                @foreach ($symbol as $s)
-                                    <option value="{{ $s->symbol }}">{{ $s->symbol }}</option>
-                                @endforeach
-                            </select>
+                            <label>High Price Range:</label>
+                            <div class="mb-1">
+                                <div class="input-group">
+                                    <select id="operatorHigh" class="form-control select-search select-fixed-single"  data-fouc>
+                                        <option value="<"  >Below</option>
+                                        <option value="<=" >Below or equal</option>
+                                        <option value=">"  >Above</option>
+                                        <option value=">=" >Above or equal</option>
+                                        <option value="==" >Equal</option>
+                                        <option value="!=" >Not equal</option>
+                                    </select>
+                                    <input id="highInput" style="margin-left: 10px;" type="text" class="form-control" placeholder="HIGH">
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -269,7 +276,9 @@
              * Dropdown with Input Field
              */
             var op = "<"; // % CHG
-            var opl = "<"; // last
+            var opl = "<"; // LAST
+            var oph = "<"; // HIGH
+
             var operators = {
                 "==": function (a, b) { return a == b; },
                 "<=": function (a, b) { return a <= b; },
@@ -295,6 +304,15 @@
                     let l = parseFloat(data[4]) || 0; // CHG %
 
                     if ((isNaN(c)) || (operators[opl](+l, +c))) {
+                        console.log(c + " " + l);
+                        return true;
+                    }
+                    return false;
+                }, function (settings, data, dataIndex) {
+                    let c = parseFloat($('#highInput').val(), 10);
+                    let l = parseFloat(data[7]) || 0; // HIGH
+
+                    if ((isNaN(c)) || (operators[oph](+l, +c))) {
                         // console.log(c + " " + l);
                         return true;
                     }
@@ -308,8 +326,8 @@
                         (isNaN(min) && col <= max) ||
                         (min <= col && isNaN(max)) ||
                         (min <= col && col <= max)) {
-                        console.log("data1")
-                        console.log(data)
+                        // console.log("data1")
+                        // console.log(data)
                         return true;
                     }
                     return false;
@@ -335,6 +353,16 @@
             });
 
             $('#lastInput').keyup(function() {
+                table.draw();
+            });
+
+            //HIGH
+            $('#operatorHigh').on('change', function () {
+                oph = this.value;
+                table.draw();
+            });
+
+            $('#highInput').keyup(function() {
                 table.draw();
             });
 

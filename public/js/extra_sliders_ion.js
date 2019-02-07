@@ -35,9 +35,9 @@ var IonSlider = function() {
             type: 'double',
             min: 0,
             max: 10000000,
-            step: 1000,
-            from: 25000,
-            to: 500000,
+            step: 10000,
+            from: 50000,
+            to: 2500000,
             onFinish:function () {
                 table.draw();
             }
