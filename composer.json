@@ -15,7 +15,8 @@
         "keboola/csv": "^2.0",
         "laravel/framework": "5.7.*",
         "laravel/tinker": "^1.0",
-        "reliese/laravel": "^0.0.13"
+        "reliese/laravel": "^0.0.13",
+        "tcg/voyager": "^1.1"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.2",
@@ -63,5 +64,11 @@
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
         ]
+    },
+    "repositories": {
+        "hooks": {
+            "type": "composer",
+            "url": "https://larapack.io"
+        }
     }
 }

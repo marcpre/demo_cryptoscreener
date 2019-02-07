@@ -17,7 +17,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
 
 /*
 Route::get('/grid', function () {
@@ -25,7 +25,7 @@ Route::get('/grid', function () {
 });
 */
 
-Route::resource('/datatable', 'DataTableController');
+// Route::resource('/datatable', 'DataTableController');
 
 Route::resource('/home', 'DataTableController');
 
@@ -36,3 +36,8 @@ Route::get('/datatable', function () {
     return view('datatable');
 });
 */
+
+
+Route::group(['prefix' => 'admin'], function () {
+    Voyager::routes();
+});

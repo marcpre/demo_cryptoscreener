@@ -168,6 +168,8 @@ return [
 
         Reliese\Coders\CodersServiceProvider::class, // create models based on db table
         Barryvdh\Debugbar\ServiceProvider::class, // debugtoolbar
+        TCG\Voyager\VoyagerServiceProvider::class, //voyager
+
         /*
          * Application Service Providers...
          */
