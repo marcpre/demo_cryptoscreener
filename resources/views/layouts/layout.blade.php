@@ -98,8 +98,9 @@
                 </li>
                 -->
             </ul>
-<!--
+
             <ul class="navbar-nav ml-auto">
+                <!--
                 <li class="nav-item">
                     <a href="#" class="navbar-nav-link">
                         Text link
@@ -113,7 +114,8 @@
                         <span class="badge badge-mark border-white ml-auto ml-md-0"></span>
                     </a>
                 </li>
-
+-->
+                <!--
                 <li class="nav-item dropdown dropdown-user">
                     <a href="#" class="navbar-nav-link dropdown-toggle" data-toggle="dropdown">
                         <img src="global_assets/images/image.png" class="rounded-circle" alt="">
@@ -129,8 +131,42 @@
                         <a href="#" class="dropdown-item"><i class="icon-switch2"></i> Logout</a>
                     </div>
                 </li>
+                -->
+                @guest
+                    <li class="nav-item dropdown dropdown-user">
+                        <a href="#" class="navbar-nav-link dropdown-toggle" data-toggle="dropdown">
+                            <img src="global_assets/images/image.png" class="rounded-circle" alt="">
+                            <span>Guest</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right">
+
+                            <a href="{{ route('login') }}" class="dropdown-item"><i class="icon-enter"></i> {{ __('Login') }}</a>
+                            @if (Route::has('register'))
+                                <a href="{{ route('register') }}" class="dropdown-item"><i class="icon-user-plus"></i> {{ __('Register') }}</a>
+                            @endif
+                        </div>
+                    </li>
+                @else
+                    <li class="nav-item dropdown dropdown-user">
+                        <a href="#" class="navbar-nav-link dropdown-toggle" data-toggle="dropdown">
+                            <img src="global_assets/images/image.png" class="rounded-circle" alt="">
+                            <span>{{ Auth::user()->name }}</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right">
+
+                            <a href="{{ route('logout') }}" class="dropdown-item" onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();"><i class="icon-exit"></i> {{ __('Logout') }}</a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                  style="display: none;">
+                                @csrf
+                            </form>
+
+                        </div>
+                    </li>
+                @endguest
+
             </ul>
-            -->
+
         </div>
     </div>
     <!-- /main navbar -->
