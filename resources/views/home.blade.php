@@ -6,6 +6,27 @@
         <div class="card-header header-elements-inline">
             <h5 class="card-title">Filters</h5>
             <div class="header-elements">
+                <button id="refreshPage" type="button" class="btn bg-blue"><i class="icon-bin mr-2"></i> Clear</button>
+                <div class="btn-group">
+                    <button type="button" style="margin-right: 20px; margin-left: 5px;"
+                            class="btn bg-green-400 dropdown-toggle" data-toggle="dropdown">Save filters
+                    </button>
+                    <div id="copyDropdown" class="dropdown-menu dropdown-menu-right">
+                        <div class="form-group"
+                             style="width: 500px;padding-left: 10px;padding-right: 10px;padding-top: 5px;padding-bottom: 5px;">
+                            <label><h3>Share your screener:</h3></label>
+                            <p>
+                                Share or save your filters using the web URL.
+                            </p>
+                            <div class="input-group">
+                                <input id="cpy" type="text" class="form-control" placeholder="URL">
+                                <span class="input-group-append">
+									<button id="cpyBtn" class="btn btn-light" type="button" data-clipboard-target="#cpy" data-popup="tooltip" title="Click to copy!" data-trigger="manual" data-container="body"><i class="icon-clipboard"></i></button>
+								</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="list-icons">
                     <a class="list-icons-item" data-action="collapse"></a>
                     <!-- <a class="list-icons-item" data-action="reload"></a> -->
@@ -58,15 +79,17 @@
                             <label>High Price Range:</label>
                             <div class="mb-1">
                                 <div class="input-group">
-                                    <select id="operatorHigh" class="form-control select-search select-fixed-single"  data-fouc>
-                                        <option value="<"  >Below</option>
-                                        <option value="<=" >Below or equal</option>
-                                        <option value=">"  >Above</option>
-                                        <option value=">=" >Above or equal</option>
-                                        <option value="==" >Equal</option>
-                                        <option value="!=" >Not equal</option>
+                                    <select id="operatorHigh" class="form-control select-search select-fixed-single"
+                                            data-fouc>
+                                        <option value="<">Below</option>
+                                        <option value="<=">Below or equal</option>
+                                        <option value=">">Above</option>
+                                        <option value=">=">Above or equal</option>
+                                        <option value="==">Equal</option>
+                                        <option value="!=">Not equal</option>
                                     </select>
-                                    <input id="highInput" style="margin-left: 10px;" type="text" class="form-control" placeholder="HIGH">
+                                    <input id="highInput" style="margin-left: 10px;" type="text" class="form-control"
+                                           placeholder="HIGH">
                                 </div>
                             </div>
                         </div>
@@ -105,15 +128,17 @@
                             <label>% Change:</label>
                             <div class="mb-1">
                                 <div class="input-group">
-                                    <select id="operator" class="form-control select-search select-fixed-single"  data-fouc>
-                                        <option value="<"  >Below</option>
-                                        <option value="<=" >Below or equal</option>
-                                        <option value=">"  >Above</option>
-                                        <option value=">=" >Above or equal</option>
-                                        <option value="==" >Equal</option>
-                                        <option value="!=" >Not equal</option>
+                                    <select id="operator" class="form-control select-search select-fixed-single"
+                                            data-fouc>
+                                        <option value="<">Below</option>
+                                        <option value="<=">Below or equal</option>
+                                        <option value=">">Above</option>
+                                        <option value=">=">Above or equal</option>
+                                        <option value="==">Equal</option>
+                                        <option value="!=">Not equal</option>
                                     </select>
-                                    <input id="changePercentageInput" style="margin-left: 10px;" type="text" class="form-control" placeholder="CHG %">
+                                    <input id="changePercentageInput" style="margin-left: 10px;" type="text"
+                                           class="form-control" placeholder="CHG %">
                                 </div>
                             </div>
                         </div>
@@ -124,15 +149,17 @@
                             <label>Last Price Range:</label>
                             <div class="mb-1">
                                 <div class="input-group">
-                                    <select id="operatorLast" class="form-control select-search select-fixed-single" style="margin-right: 10px;" data-fouc>
-                                        <option value="<"  >Below</option>
-                                        <option value="<=" >Below or equal</option>
-                                        <option value=">"  >Above</option>
-                                        <option value=">=" >Above or equal</option>
-                                        <option value="==" >Equal</option>
-                                        <option value="!=" >Not equal</option>
+                                    <select id="operatorLast" class="form-control select-search select-fixed-single"
+                                            style="margin-right: 10px;" data-fouc>
+                                        <option value="<">Below</option>
+                                        <option value="<=">Below or equal</option>
+                                        <option value=">">Above</option>
+                                        <option value=">=">Above or equal</option>
+                                        <option value="==">Equal</option>
+                                        <option value="!=">Not equal</option>
                                     </select>
-                                    <input id="lastInput" style="margin-left: 10px;" type="text" class="form-control" placeholder="Last">
+                                    <input id="lastInput" style="margin-left: 10px;" type="text" class="form-control"
+                                           placeholder="Last">
                                 </div>
                             </div>
                         </div>
@@ -280,12 +307,24 @@
             var oph = "<"; // HIGH
 
             var operators = {
-                "==": function (a, b) { return a == b; },
-                "<=": function (a, b) { return a <= b; },
-                ">=": function (a, b) { return a >= b; },
-                "<": function (a, b) { return a < b; },
-                ">": function (a, b) { return a > b; },
-                "!=": function (a, b) { return a != b; }
+                "==": function (a, b) {
+                    return a == b;
+                },
+                "<=": function (a, b) {
+                    return a <= b;
+                },
+                ">=": function (a, b) {
+                    return a >= b;
+                },
+                "<": function (a, b) {
+                    return a < b;
+                },
+                ">": function (a, b) {
+                    return a > b;
+                },
+                "!=": function (a, b) {
+                    return a != b;
+                }
             };
 
             //% Change
@@ -320,7 +359,7 @@
                 }, function (settings, data, dataIndex) {
                     // convert thousand seperator to real float number
                     // uses regex for replaceAll: https://stackoverflow.com/questions/1144783/how-to-replace-all-occurrences-of-a-string-in-javascript
-                    var col = parseFloat(data[9].replace(/,/g,"")) || 0; // VOLUME
+                    var col = parseFloat(data[9].replace(/,/g, "")) || 0; // VOLUME
 
                     if ((isNaN(min) && isNaN(max)) ||
                         (isNaN(min) && col <= max) ||
@@ -342,7 +381,7 @@
                 table.draw();
             });
 
-            $('#changePercentageInput').keyup(function() {
+            $('#changePercentageInput').keyup(function () {
                 table.draw();
             });
 
@@ -352,7 +391,7 @@
                 table.draw();
             });
 
-            $('#lastInput').keyup(function() {
+            $('#lastInput').keyup(function () {
                 table.draw();
             });
 
@@ -362,10 +401,20 @@
                 table.draw();
             });
 
-            $('#highInput').keyup(function() {
+            $('#highInput').keyup(function () {
                 table.draw();
             });
 
+// intantiate clipboardjs
+            new ClipboardJS('#cpyBtn');
+
+            $('#copyDropdown').on('click', function (e) {
+                e.stopPropagation();
+            });
+
+            $('#refreshPage').click(function() {
+                location.reload();
+            });
         });
     </script>
 

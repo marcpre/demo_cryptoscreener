@@ -50,9 +50,11 @@
 
     <script src="{{asset('js/form_select2.js')}}"></script>
     <script src="{{asset('js/extra_sliders_ion.js')}}"></script>
-
-
     <!-- /Theme JS files -->
+
+    <!-- Clipboard -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
+    <!-- /Clipboard -->
 </head>
 
 <body class="navbar-md-md-top">
