@@ -33,7 +33,6 @@ class Kernel extends ConsoleKernel
          */
         $schedule->command('basis:cc')->hourly();
 
-
     }
 
     /**

@@ -6,10 +6,14 @@
         <div class="card-header header-elements-inline">
             <h5 class="card-title">Filters</h5>
             <div class="header-elements">
-                <button id="refreshPage" type="button" class="btn bg-blue"><i class="icon-bin mr-2"></i> Clear</button>
+                <button id="refreshPage" style="margin-right: 20px; margin-left: 5px;" type="button" class="btn bg-blue"><i class="icon-bin mr-2"></i> Clear</button>
+                <!--
+                <button id="saveFilters" style="margin-right: 0px; margin-left: 5px;" type="button" class="btn bg-red"><i class="icon-bin mr-2"></i> Save</button>
+                -->
+                <!--
                 <div class="btn-group">
                     <button type="button" style="margin-right: 20px; margin-left: 5px;"
-                            class="btn bg-green-400 dropdown-toggle" data-toggle="dropdown">Save filters
+                            class="btn bg-green-400 dropdown-toggle" data-toggle="dropdown">Share filters
                     </button>
                     <div id="copyDropdown" class="dropdown-menu dropdown-menu-right">
                         <div class="form-group"
@@ -27,6 +31,7 @@
                         </div>
                     </div>
                 </div>
+                -->
                 <div class="list-icons">
                     <a class="list-icons-item" data-action="collapse"></a>
                     <!-- <a class="list-icons-item" data-action="reload"></a> -->
@@ -407,6 +412,7 @@
 
 // intantiate clipboardjs
             new ClipboardJS('#cpyBtn');
+
 
             $('#copyDropdown').on('click', function (e) {
                 e.stopPropagation();
