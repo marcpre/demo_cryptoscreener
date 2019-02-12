@@ -33,6 +33,12 @@ class Kernel extends ConsoleKernel
          */
         $schedule->command('basis:cc')->hourly();
 
+        $schedule->command('tick:binance')->everyFiveMinutes();;
+        $schedule->command('tick:bithumb')->everyFiveMinutes();;
+        $schedule->command('tick:bittrex')->everyFiveMinutes();;
+        $schedule->command('tick:okex')->everyFiveMinutes();;
+        $schedule->command('tick:zb')->everyFiveMinutes();;
+
     }
 
     /**
